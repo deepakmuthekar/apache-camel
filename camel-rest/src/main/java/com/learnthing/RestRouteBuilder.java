@@ -25,18 +25,19 @@ public class RestRouteBuilder extends RouteBuilder {
 		 @Override
 			public void process(Exchange exchange) throws Exception {
 				System.out.println("Inside the processor......");
-				exchange.getIn().setHeader(Exchange.HTTP_RESPONSE_CODE, 400);
+				exchange.getOut().setHeader(Exchange.HTTP_RESPONSE_CODE, 400);
 	            exchange.getIn().setHeader(Exchange.CONTENT_TYPE, "application/json");
 	            List<String> errors= Arrays.asList("SEcurity ID required");
 	            APIError error = new APIError("400", "INVALID_INPUT", errors); 
-	            		exchange.getOut().setBody(error);
+	         exchange.getOut().setBody(error);
 			}
 		});
 		
 		restConfiguration()
 			.component("servlet")
 			.contextPath("/camel")
-			.bindingMode(RestBindingMode.auto).skipBindingOnErrorCode(true);
+			.bindingMode(RestBindingMode.auto)
+			.skipBindingOnErrorCode(false);
 		
 		rest("/rest")
 			.get("/ping")
