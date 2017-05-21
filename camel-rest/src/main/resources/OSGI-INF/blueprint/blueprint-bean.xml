@@ -15,13 +15,12 @@
 		<property name="servlet" ref="camelServlet" />
 	</bean>
 
-	<bean id="camelServlet"
-		class="org.apache.camel.component.servlet.CamelHttpTransportServlet" />
+	<bean id="camelServlet" class="org.apache.camel.component.servlet.CamelHttpTransportServlet" />
 
 	<bean id="routeBuilder" class="com.learnthing.RestRouteBuilder" />
 	<bean id="messageBean" class="com.learnthing.MessageBean"></bean>
 
-	<camelContext id="DEEPAK"
+	<camelContext id="deepak-context"
 		xmlns="http://camel.apache.org/schema/blueprint">
 
 		<routeBuilder ref="routeBuilder" />
